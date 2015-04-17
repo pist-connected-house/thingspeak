@@ -4,6 +4,7 @@ Thingspeak::Application.routes.draw do
   get '/pist', to: 'login#essai'
   get '/appli', to: 'appli#index'
   get '/appli/configuration', to: 'appli#configuration'
+  get '/signUp', to: 'signup#signup'
 
   # admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
