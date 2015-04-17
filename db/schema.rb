@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417151358) do
+ActiveRecord::Schema.define(version: 20150417165125) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,17 +46,6 @@ ActiveRecord::Schema.define(version: 20150417151358) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "ads", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.decimal  "price",       precision: 10, scale: 0
-    t.integer  "seller_id"
-    t.string   "email"
-    t.string   "img_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "api_keys", force: true do |t|
     t.string   "api_key",    limit: 16
     t.integer  "channel_id"
@@ -69,6 +58,13 @@ ActiveRecord::Schema.define(version: 20150417151358) do
 
   add_index "api_keys", ["api_key"], name: "index_api_keys_on_api_key", unique: true, using: :btree
   add_index "api_keys", ["channel_id"], name: "index_api_keys_on_channel_id", using: :btree
+
+  create_table "association_electricities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "api_key_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "channels", force: true do |t|
     t.integer  "user_id"
