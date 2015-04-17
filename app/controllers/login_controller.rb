@@ -1,4 +1,8 @@
 class LoginController < ApplicationController
-	layout 'login'
+	layout 'essai'
+
+	def essai
+		render 'essai'
+	end
 
 end

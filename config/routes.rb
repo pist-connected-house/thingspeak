@@ -1,7 +1,7 @@
 Thingspeak::Application.routes.draw do
 
   #pist routes
-  get '/pist', :to => 'login#login'
+  get '/pist', to: 'login#essai'
   get '/appli', :to => 'appli#index'
 
   # admin routes
