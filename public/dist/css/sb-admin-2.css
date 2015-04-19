@@ -12,6 +12,10 @@ body {
     background-color: #f8f8f8;
 }
 
+#config-buttons {
+    margin-bottom: 2%;
+}
+
 .weather-panel {
 	list-style-type : none;
 	max-height : 430px;

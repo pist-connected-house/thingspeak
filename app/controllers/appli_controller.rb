@@ -6,12 +6,14 @@ class AppliController < ApplicationController
 	end
 
 	def configuration
-		@channels = current_user.channels
-	    respond_to do |format|
-	      format.html
-	      format.json { render :json => @channels.not_social.to_json(Channel.private_options) }
-	      format.xml { render :xml => @channel.not_social.to_xml(Channel.private_options) }
-	    end
+		@channels = Array.new
+		AssociationElectricity.all.each do |e|
+			if (e.user_id != nil) & (e.user_id == current_user.id)
+				apikey = ApiKey.find(e.api_key_id)
+				channel = Channel.find(apikey.channel_id)
+				@channels.push(channel)
+			end
+		end
 	end
 	
 
