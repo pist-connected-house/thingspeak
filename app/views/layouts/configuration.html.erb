@@ -26,6 +26,7 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="../dist/css/bootstrap-select.css">
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -47,20 +48,17 @@
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angularLocalStorage-nc/src/angularLocalStorage.js"></script>
     <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="../js/app.js"></script>
-    <script src="../js/ElectricityCtrl.js"></script>
-    <script src="../js/ForecastCtrl.js"></script>
-	<script src="../js/MainController.js"></script>
-    <script src="../js/weatherCtrl.js"></script>
-    <script src="../js/AdvancedWeatherCtrl.js"></script>
-    <script src="../js/HeaderController.js"></script>
-    <script src="../js/PhotovoltaicController.js"></script>
+    <script src="../js/ConfigurationApp.js"></script>
+    <script src="../js/ConfigurationController.js"></script>
+    <script src="../js/NewChannelController.js"></script>
+    <script src="../js/EditChannelController.js"></script>
+    <script src="../js/HeaderControllerConfig.js"></script>
 
 </head>
 
 <body>
 
-    <div ng-app="pistApp" id="wrapper">
+    <div ng-app="ConfigurationApp" id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
@@ -98,24 +96,24 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-fixed sidebar" role="navigation" ng-controller="HeaderController">
+            <div class="navbar-fixed sidebar" role="navigation" ng-controller="HeaderControllerConfig">
                 <div class="sidebar-nav navbar-collapse navbar-fixed">
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a ng-class="{ active: isActive('/')}" href="#/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a ng-class="{ active: isActive('/')}" href="/appli#/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#/energy"><i class="fa fa-flash fa-fw"></i> My Energy<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a ng-class="{ active: isActive('/energy/electricity')}" href="#/energy/electricity">Electricity</a>
+                                    <a ng-class="{ active: isActive('/energy/electricity')}" href="/appli#/energy/electricity">Electricity</a>
                                 </li>
                                 <li>
-                                    <a ng-class="{ active: isActive('/energy/water')}" href="#/energy/water">Water</a>
+                                    <a ng-class="{ active: isActive('/energy/water')}" href="/appli#/energy/water">Water</a>
                                 </li>
                                 <li>
-                                    <a ng-class="{ active: isActive('/energy/photovoltaic')}" href="#/energy/photovoltaic">Photovoltaic panels</a>
+                                    <a ng-class="{ active: isActive('/energy/photovoltaic')}" href="/appli#/energy/photovoltaic">Photovoltaic panels</a>
                                 </li>
 
 
@@ -123,13 +121,13 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a ng-class="{ active: isActive('/weather')}" href="#/weather"><i class="fa fa-sun-o fa-fw"></i> My Weather</a>
+                            <a ng-class="{ active: isActive('/weather')}" href="/appli#/weather"><i class="fa fa-sun-o fa-fw"></i> My Weather</a>
                         </li>
                         <li>
-                            <a ng-class="{ active: isActive('/forecast')}" href="#/forecast"><i class="fa fa-cloud fa-fw"></i> Weather forecast</a>
+                            <a ng-class="{ active: isActive('/forecast')}" href="/appli#/forecast"><i class="fa fa-cloud fa-fw"></i> Weather forecast</a>
                         </li>
 						<li>
-                            <a ng-class="{ active: isActive('/advanced')}" href="#/advanced"><i class="fa fa-sellsy fa-fw"></i> Advanced weather</a>
+                            <a ng-class="{ active: isActive('/advanced')}" href="/appli#/advanced"><i class="fa fa-sellsy fa-fw"></i> Advanced weather</a>
                         </li>
 						<li>
                            <a href="#"><i class="fa fa-lock fa-fw"></i> My Security</a>
@@ -171,6 +169,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/bootstrap-select.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+<div class="row">
+    <table ng-show="channels.length" class="table table-striped table-bordered tablesorter" data-no-turbolink>
+      <thead>
+        <tr>
+          <th>Name<i class="fa fa-unsorted"></i></th>
+          <th>Created<i class="fa fa-unsorted"></i></td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="channel in channels">
+            <td>
+
+              <h4 style="margin-top: 0;">
+                <a ng-href="/channels/{{ channel.id }}">
+                  <i ng-class="{'fa-lock': channel.public_flag}" class="fa fa-fw"></i>{{ channel.name }}
+                </a>
+              </h4>
+              <div class="btn-group btn-group-sm hidden-xs hidden-sm">
+                <a class="btn btn-default" ng-href="/channels/{{channel.id}}#privateview">Private</a>
+                    <a class="btn btn-default" href="/channels/{{channel.id}}#publicview">Public</a>
+                    <a class="btn btn-default" href="/channels/{{channel.id}}#channelsettings">Settings</a>
+                    <a class="btn btn-default" href="/channels/{{channel.id}}#apikeys">API Key</a>
+                    <a class="btn btn-default" href="/channels/{{channel.id}}#dataimport">Data Import / Export</a>
+              </div>
+
+            </td>
+            <td>{{channel.created_at | date:'yyyy-MM-dd'}}</td>
+          </tr>
+      </tbody>
+    </table>
+</div>

@@ -1,8 +1,8 @@
 class AppliController < ApplicationController
-	layout 'index'
+	before_filter :require_user
 
 	def index
-		render 'index'
+		render layout: "index"
 	end
 
 	def configuration
@@ -14,6 +14,14 @@ class AppliController < ApplicationController
 				@channels.push(channel)
 			end
 		end
+		respond_to do |format|
+      format.html {	render layout: "configuration" }
+      format.json { render :json => @channels }
+      format.xml { render :xml => @channel.not_social.to_xml(Channel.private_options) }
+    end
+	end
+
+	def new
 	end
 	
 
