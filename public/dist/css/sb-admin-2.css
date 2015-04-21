@@ -20,6 +20,10 @@ body {
     margin-top: 1%;
 }
 
+.red-rm {
+    color: #e74c3c
+}
+
 .weather-panel {
 	list-style-type : none;
 	max-height : 430px;
@@ -35,6 +39,10 @@ body {
 
 .weather-panel ul{
 	padding : 0px;
+}
+
+.green-check {
+    color: #2ecc71
 }
 
 .btn-custom {

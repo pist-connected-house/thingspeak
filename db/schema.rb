@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421093556) do
+ActiveRecord::Schema.define(version: 20150421160558) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150421093556) do
   add_index "api_keys", ["api_key"], name: "index_api_keys_on_api_key", unique: true, using: :btree
   add_index "api_keys", ["channel_id"], name: "index_api_keys_on_channel_id", using: :btree
 
-  create_table "association_electricities", force: true do |t|
+  create_table "associations", force: true do |t|
     t.integer  "user_id"
     t.integer  "api_key_id"
     t.datetime "created_at"

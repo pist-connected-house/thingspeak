@@ -1,11 +1,13 @@
 Thingspeak::Application.routes.draw do
 
   #pist routes
-  get '/pist', to: 'login#essai'
+  get '/appli/login', to: 'login#login'
   get '/appli', to: 'appli#index'
   get '/appli/configuration', to: 'appli#configuration'
   get 'appli/configuration/new-channel', to: 'appli#newchannel'
   get 'appli/configuration/edit-channel', to: 'appli#editchannel'
+  post 'appli/configuration/update-api', to: 'appli#update_api'
+  post 'appli/configuration/unbind-api', to: 'appli#unbind_api'
   get '/signUp', to: 'signup#signup'
 
   # admin routes
@@ -216,6 +218,7 @@ Thingspeak::Application.routes.draw do
   devise_scope :user do
     match 'login', to: "devise/sessions#new", :via => [:get, :post]
     match 'logout', to: "devise/sessions#destroy", :via => [:get, :post]
+    match 'appli/logout', to: "devise/sessions#destroy", :via => [:get, :post]
   end
 
   # streaming routes

@@ -1,9 +1,9 @@
 <div class="row">
-	<table ng-show="channels_and_keys.length" class="table table-striped table-bordered tablesorter" data-no-turbolink>
+	<table ng-show="channels_and_keys.length" class="table table-striped table-bordered" data-no-turbolink>
       <thead>
         <tr>
-          <th>Name<i class="fa fa-unsorted"></i></th>
-          <th>API key<i class="fa fa-unsorted"></i></th>
+          <th>Name</th>
+          <th>API key</th>
           <th></th>
           <th></th>
         </tr>
@@ -11,18 +11,22 @@
       <tbody>
           <tr ng-repeat="ck in channels_and_keys">
             <td>
-				{{ck.channel.name}}
+				<span ng-hide="show[$index]">{{ck.channel.name}}</span>
+				<input type="text" ng-show="show[$index]" class="form-control" ng-model="ck.channel.name" aria-label="...">
             </td>
             <td>
             	<span ng-hide="show[$index]">{{ck.api_key}}</span>
-            	<input type="text" ng-show="show[$index]" class="form-control" value="{{ck.api_key}}" aria-label="...">
+            	<input type="text" ng-show="show[$index]" class="form-control" ng-model="ck.api_key" aria-label="...">
             </td>
             <td>
-            	<a ng-hide="show[$index]" href="" ng-click="showApiKey($index)"><i class="fa fa-pencil"></i></a>
-            	<a ng-show="show[$index]" href="" ng-click="showApiKey($index)" ><i class="fa fa-check"></i></a>
+            	<a ng-hide="show[$index]" href="" ng-click="editApiKey($index)"><i ng-hide="green[$index] || show[$index]" class="fa fa-pencil"></i></a>
+            	<a ng-show="show[$index] || green[$index]" href="" ng-click="editApiKey($index)" ><i ng-class="{'green-check': green[$index]}"class="fa fa-check"></i></a>
             </td>
             <td>
-            	<i class="fa fa-trash-o"></i>
+            	<a href="" ng-hide="rm[$index]" ng-click="remove($index)"><i class="fa fa-trash"></i></a>
+            	<a href="" ng-show="rm[$index]" ng-click="removeApiKey($index)"><i class="green-check fa fa-check"></i></a>
+              <span ng-show="rm[$index]"><small>Are you sure ?</small></span>
+              <a href="" ng-show="rm[$index]" ng-click="remove($index)"><i class="red-rm fa fa-times"></i></a>
             </td>
           </tr>
       </tbody>

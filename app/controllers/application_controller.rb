@@ -44,6 +44,10 @@ class ApplicationController < ActionController::Base
     params[:sum] = '1440' if params[:sum] == 'daily'
   end
 
+  def after_sign_out_path_for(resource)
+    return '/appli/login'
+  end
+
   # change default devise sign_in page; make admins sign in work correctly
   def after_sign_in_path_for(resource)
     if resource.is_a?(AdminUser)

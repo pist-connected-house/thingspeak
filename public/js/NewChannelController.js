@@ -23,8 +23,13 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 						$scope.errorsRequest = false;
 						$scope.success = true;
 					}
+					else if (result.data[0] === "error") {
+						$scope.errorMessageR = "The API already belongs to a user.";
+						$scope.errorsRequest = true;
+						$scope.success = false;
+					}
 					else {
-						$scope.errorMessageR = "The API key already exists or is invalid";
+						$scope.errorMessageR = "The API key already exists or is invalid.";
 						$scope.errorsRequest = true;
 						$scope.success = false;
 					}
