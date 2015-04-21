@@ -16,6 +16,10 @@ body {
     margin-bottom: 2%;
 }
 
+.btn-add-api {
+    margin-top: 1%;
+}
+
 .weather-panel {
 	list-style-type : none;
 	max-height : 430px;
@@ -45,6 +49,13 @@ body {
 
 #errors-message {
     color: #e74c3c;
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+#success-message {
+    color: #2ecc71;
     font-size: 1.3em;
     text-align: center;
     margin-bottom: 1%;

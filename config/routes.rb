@@ -4,6 +4,8 @@ Thingspeak::Application.routes.draw do
   get '/pist', to: 'login#essai'
   get '/appli', to: 'appli#index'
   get '/appli/configuration', to: 'appli#configuration'
+  get 'appli/configuration/new-channel', to: 'appli#newchannel'
+  get 'appli/configuration/edit-channel', to: 'appli#editchannel'
   get '/signUp', to: 'signup#signup'
 
   # admin routes

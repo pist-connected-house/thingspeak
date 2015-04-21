@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417165125) do
+ActiveRecord::Schema.define(version: 20150421093556) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150417165125) do
     t.integer  "api_key_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "channels", force: true do |t|

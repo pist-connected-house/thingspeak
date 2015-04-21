@@ -1,11 +1,27 @@
-<p>Hit ENTER to add a new channel</p>
-<div class="input-group">
-  <div class="input-group-btn">
-    <select ng-model="type" class="selectpicker">
-    	<option value="electricity">Electricity</option>
-    	<option value="water">Water</option>
-    	<option value="weather">Weather</option>
-	</select>
-  </div><!-- /btn-group -->
-  <input type="text" class="form-control" placeholder="API key" aria-label="...">
-</div><!-- /input-group -->
+<p>Add a new channel</p>
+<form ng-submit="submitAPIkey()">
+	<div class="input-group">
+	  <div class="input-group-btn">
+	    <select ng-model="type" class="selectpicker">
+	    	<option value="electricity">Electricity</option>
+	    	<option value="water">Water</option>
+	    	<option value="weather">Weather</option>
+		</select>
+	  </div><!-- /btn-group -->
+	  <input type="text" class="form-control" ng-model="api_key" placeholder="API key" aria-label="...">
+	</div>
+	<div id="errors-message" ng-show="errors && !api_key.length">
+        <i class="fa fa-exclamation-triangle btn-add-api"></i>
+        {{errorMessage}}
+    </div>
+    <div id="errors-message" ng-show="errorsRequest">
+        <i class="fa fa-exclamation-triangle btn-add-api"></i>
+        {{errorMessageR}}
+    </div>
+    <div id="success-message" ng-show="success">
+        <i class="fa fa-thumbs-up btn-add-api"></i>
+        API key added
+    </div>
+	<button type="submit" class="btn-add-api btn btn-primary form-control" aria-label="...">Add</button>
+
+</form>
