@@ -8,9 +8,9 @@
 	    	<option value="weather">Weather</option>
 		</select>
 	  </div><!-- /btn-group -->
-	  <input type="text" class="form-control" ng-model="api_key" placeholder="API key" aria-label="...">
+	  <input type="text" class="form-control" ng-model="key" placeholder="Device key" aria-label="...">
 	</div>
-	<div id="errors-message" ng-show="errors && !api_key.length">
+	<div id="errors-message" ng-show="errors && !key.length">
         <i class="fa fa-exclamation-triangle btn-add-api"></i>
         {{errorMessage}}
     </div>

@@ -12,13 +12,13 @@ class AppliController < ApplicationController
 
 	def configuration
 		@channels = Array.new
-		#@types = Array.new
+		@types = Array.new
 		Association.all.each do |e|
 			if (e.user_id != nil) & (e.user_id == current_user.id)
 				apikey = ApiKey.find(e.key)
 				channel = Channel.find(apikey.channel_id)
 				@channels.push(channel)
-				#@types.push(e.name)
+				@types.push(e.name)
 			end
 		end
 		respond_to do |format|

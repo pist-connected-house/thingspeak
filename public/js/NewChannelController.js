@@ -7,16 +7,16 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	$scope.errors = false;
 	$scope.errorsRequest = false;
 	$scope.success = false;
-	$scope.api_key = "";
+	$scope.key = "";
 	$scope.type = "electricity";
 
 	$scope.submitAPIkey = function() {
-		if ($scope.api_key === "") {
+		if ($scope.key === "") {
 			$scope.errorMessage = "The field is empty";
 			$scope.errors = true;
 		}
 		else {
-			$http.get('http://localhost:3000/appli/configuration/new-channel.json?api_key='+$scope.api_key+'&type='+$scope.type)
+			$http.get('http://localhost:3000/appli/configuration/new-channel.json?key='+$scope.key+'&type='+$scope.type)
 				.then(function (result) {
 					if (result.data[0] == "success") {
 						$scope.errors = false;
@@ -24,12 +24,12 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 						$scope.success = true;
 					}
 					else if (result.data[0] === "error") {
-						$scope.errorMessageR = "The API already belongs to a user.";
+						$scope.errorMessageR = "The key already belongs to a user.";
 						$scope.errorsRequest = true;
 						$scope.success = false;
 					}
 					else {
-						$scope.errorMessageR = "The API key already exists or is invalid.";
+						$scope.errorMessageR = "The key already exists or is invalid.";
 						$scope.errorsRequest = true;
 						$scope.success = false;
 					}
