@@ -6,15 +6,19 @@ class AppliController < ApplicationController
 		render layout: "index"
 	end
 
+	def keyRegistrations
+		render "keyRegistrations"
+	end
+
 	def configuration
 		@channels = Array.new
-		@types = Array.new
+		#@types = Array.new
 		Association.all.each do |e|
 			if (e.user_id != nil) & (e.user_id == current_user.id)
-				apikey = ApiKey.find(e.api_key_id)
+				apikey = ApiKey.find(e.key)
 				channel = Channel.find(apikey.channel_id)
 				@channels.push(channel)
-				@types.push(e.name)
+				#@types.push(e.name)
 			end
 		end
 		respond_to do |format|
@@ -29,7 +33,7 @@ class AppliController < ApplicationController
 		@message.push("error")
 		ApiKey.all.each do |e|
 			if e.api_key == params[:api_key]
-				asso = Association.find(:all, :conditions => ["api_key_id = ?", e.id])
+				asso = Association.find(:all, :conditions => ["key = ?", e.id])
 				asso.each do |k|
 					if k.user_id == nil
 						a = Association.find(k.id)
@@ -53,7 +57,7 @@ class AppliController < ApplicationController
 		@api_keys = Array.new
 		Association.all.each do |e|
 			if (e.user_id != nil) & (e.user_id == current_user.id)
-				apikey = ApiKey.find(e.api_key_id)
+				apikey = ApiKey.find(e.key)
 				@api_keys.push(apikey.api_key)
 				channel = Channel.find(apikey.channel_id)
 				@channels.push(channel)
@@ -73,7 +77,7 @@ class AppliController < ApplicationController
 		name = params[:name]
 		channel = Channel.find(key.channel_id)
 		channel.name = name
-		k = Association.find_by api_key_id: key.id
+		k = Association.find_by key: key.id
 		if k && (k.user_id == current_user.id)
 			channel.save
 			key.save
@@ -86,7 +90,7 @@ class AppliController < ApplicationController
 	def unbind_api
 		response.content_type = "text/plain"
 		key = ApiKey.find(params[:id])
-		k = Association.find_by api_key_id: key.id
+		k = Association.find_by key: key.id
 		if (k.user_id == current_user.id)
 			k.user_id = nil
 			k.save

@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-sm-8 col-xs-12">
 
-    <h4 class="breadcrumb"><%= t(:signup_header) %></h4>
+    
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal'}) do |f| %>
       <%= devise_error_messages! %>
@@ -39,7 +39,7 @@
 
       <div class="form-group">
         <label class="col-sm-4 control-label"></label>
-        <div class="col-sm-8"><p class="form-control-static"><%= f.submit t(:create_account), :id => "user_submit", :class => 'btn btn-primary' %></p></div>
+        <div class="col-sm-8"><p class="form-control-static"><%= f.submit t(:create_account), :id => "user_submit", :class => 'btn btn-lg btn-custom btn-block' %></p></div>
       </div>
 
     <% end %>
