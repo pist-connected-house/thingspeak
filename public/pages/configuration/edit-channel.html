@@ -2,8 +2,9 @@
 	<table ng-show="channels_and_keys.length" class="table table-striped table-bordered" data-no-turbolink>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>API key</th>
+          <th>Channel</th>
+          <th>Field</th>
+          <th>Key</th>
           <th></th>
           <th></th>
         </tr>
@@ -11,12 +12,16 @@
       <tbody>
           <tr ng-repeat="ck in channels_and_keys">
             <td>
-				<span ng-hide="show[$index]">{{ck.channel.name}}</span>
-				<input type="text" ng-show="show[$index]" class="form-control" ng-model="ck.channel.name" aria-label="...">
+            <span>{{ck.channel.name}}</span>
+				<!--<span ng-hide="show[$index]">{{ck.channel.name}}</span>
+				<input type="text" ng-show="show[$index]" class="form-control" ng-model="ck.channel.name" aria-label="...">--> 
             </td>
             <td>
-            	<span ng-hide="show[$index]">{{ck.api_key}}</span>
-            	<input type="text" ng-show="show[$index]" class="form-control" ng-model="ck.api_key" aria-label="...">
+            <span>{{ck.field}}</span>
+            </td>
+            <td>
+            	<span ng-hide="show[$index]">{{ck.key}}</span>
+            	<input type="text" ng-show="show[$index]" class="form-control" ng-model="ck.key" aria-label="...">
             </td>
             <td>
             	<a ng-hide="show[$index]" href="" ng-click="editApiKey($index)"><i ng-hide="green[$index] || show[$index]" class="fa fa-pencil"></i></a>
@@ -30,5 +35,9 @@
             </td>
           </tr>
       </tbody>
+      <div id="errors-message" ng-show="errors">
+          <i class="fa fa-exclamation-triangle btn-add-api"></i>
+          {{errorMessage}}
+      </div>
     </table>
 </div>

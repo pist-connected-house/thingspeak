@@ -4,6 +4,8 @@ ConfigurationApp.controller('EditChannelController', ['$scope', '$http', '$inter
 	$scope.show_api_key = false;
 	$scope.green = false;
 	$scope.rm = [];
+	$scope.errors = false;
+	$scope.errorMessage = "";
 	
 
 	$http.get('http://localhost:3000/appli/configuration/edit-channel.json')
@@ -13,17 +15,34 @@ ConfigurationApp.controller('EditChannelController', ['$scope', '$http', '$inter
 		$scope.green = [];
 		data = result.data;
 		for (var i = 0; i < data.channels.length; i++) {
-			$scope.channels_and_keys.push({channel: data.channels[i].channel, api_key: data.api_keys[i]});
+			$scope.channels_and_keys.push({
+				channel: data.channels[i].channel, 
+				key: data.keys[i],
+				field: data.fields[i],
+				id: data.ids[i],
+			});
 			$scope.show.push(false);
 			$scope.rm.push(false);
 		}
 	});
 
+	$scope.refresh = function(index) {
+		$http.get('http://localhost:3000/appli/configuration/refresh.json?id='+$scope.channels_and_keys[index].id)
+		.then(function(result) {
+			if (result.data.key !== "error") {
+				$scope.channels_and_keys[index].key = result.data.key;
+			}
+		});
+	};
+
 	$scope.closeEverything = function() {
+		$scope.errors = false;
 		$scope.rm.forEach(function(element, index) {
 			$scope.rm[index] = false;
 		});
 		$scope.show.forEach(function(element, index) {
+			if ($scope.show[index])
+				$scope.refresh(index);
 			$scope.show[index] = false;
 		});
 	};
@@ -32,23 +51,39 @@ ConfigurationApp.controller('EditChannelController', ['$scope', '$http', '$inter
 		if ($scope.show[index]) {
 			$scope.closeEverything();
 			$scope.show[index] = true;
-			var api_key = $scope.channels_and_keys[index].api_key;
-			var id = $scope.channels_and_keys[index].channel.id;
-			var name = $scope.channels_and_keys[index].channel.name;
+			var key = $scope.channels_and_keys[index].key;
+			var id = $scope.channels_and_keys[index].id;
 			var req = {
 				method: 'POST',
-				url: 'http://localhost:3000/appli/configuration/update-api?api_key='+api_key+'&id='+id+'&name='+name,
+				url: 'http://localhost:3000/appli/configuration/update-key.json?key='+key+'&id='+id,
 				headers: {
 					'Content-Type': 'application/json'
 			 	},
 			};
 			$http(req).
 			success(function(data, status, headers, config) {
-				$scope.show[index] = !$scope.show[index];
-				$scope.green[index] = true;
-				$timeout(function() {
-					$scope.green[index] = false;
-				}, 1000);
+				if (data[0] === 'success' || data[0] == 'nothing') {
+					$scope.show[index] = !$scope.show[index];
+					$scope.green[index] = true;
+					$timeout(function() {
+						$scope.green[index] = false;
+					}, 1000);
+				}
+				else {
+					$scope.errors = true;
+					if (data[0] === 'belongs1') {
+						$scope.errorMessage = "The new key already belongs to another user.";
+					}
+					else if (data[0] == 'invalid') {
+						$scope.errorMessage = "The key is not valid.";
+					}
+					else if (data[0] == 'belongs2') {
+						$scope.errorMessage = "You are not allowed to edit this key.";
+					}
+					else {
+						$scope.errorMessage = "Unknown error.";
+					}
+				}
 			}).
 			error(function(data, status, headers, config) {
 
@@ -71,17 +106,23 @@ ConfigurationApp.controller('EditChannelController', ['$scope', '$http', '$inter
 	};
 
 	$scope.removeApiKey = function(index) {
-		var id = $scope.channels_and_keys[index].channel.id;
+		var id = $scope.channels_and_keys[index].id;
 		var req = {
 			method: 'POST',
-			url: 'http://localhost:3000/appli/configuration/unbind-api?id='+id,
+			url: 'http://localhost:3000/appli/configuration/unbind-key.json?id='+id,
 			headers: {
 				'Content-Type': 'application/json'
 		 	},
 		};
 		$http(req).
 		success(function(data, status, headers, config) {
-			$scope.channels_and_keys.pop(index);
+			if (data[0] === 'success') {
+				$scope.channels_and_keys.pop(index);
+			}
+			else {
+				$scope.errors = true;
+				$scope.errorMessage = "You are not allowed to remove this key.";
+			}
 		}).
 		error(function(data, status, headers, config) {
 		});

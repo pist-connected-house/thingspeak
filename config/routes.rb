@@ -6,8 +6,9 @@ Thingspeak::Application.routes.draw do
   get '/appli/configuration', to: 'appli#configuration'
   get 'appli/configuration/new-channel', to: 'appli#newchannel'
   get 'appli/configuration/edit-channel', to: 'appli#editchannel'
-  post 'appli/configuration/update-api', to: 'appli#update_api'
-  post 'appli/configuration/unbind-api', to: 'appli#unbind_api'
+  get 'appli/configuration/refresh', to: 'appli#refresh'
+  post 'appli/configuration/update-key', to: 'appli#update_key'
+  post 'appli/configuration/unbind-key', to: 'appli#unbind_key'
   get '/key_registrations', to: 'appli#keyRegistrations'
 
   # admin routes

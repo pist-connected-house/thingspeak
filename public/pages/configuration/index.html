@@ -13,7 +13,7 @@
 
               <h4 style="margin-top: 0;">
                 <a ng-href="/channels/{{ c.channel.id }}">
-                  <i ng-class="{'fa-lock': c.channel.public_flag}" class="fa fa-fw"></i>{{ c.channel.name }}
+                  <i ng-class="{'fa-lock': c.channel.public_flag}" class="fa fa-fw"></i>{{ c.channel.name + " - Field "  + c.field}}
                 </a>
               </h4>
               <div class="btn-group btn-group-sm hidden-xs hidden-sm">

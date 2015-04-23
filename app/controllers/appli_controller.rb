@@ -13,17 +13,18 @@ class AppliController < ApplicationController
 	def configuration
 		@channels = Array.new
 		@types = Array.new
+		@fields = Array.new
 		Association.all.each do |e|
 			if (e.user_id != nil) & (e.user_id == current_user.id)
-				apikey = ApiKey.find(e.key)
-				channel = Channel.find(apikey.channel_id)
+				channel = Channel.find(e.channel)
 				@channels.push(channel)
 				@types.push(e.name)
+				@fields.push(e.field)
 			end
 		end
 		respond_to do |format|
       format.html {	render layout: "configuration" }
-      format.json { render :json => {:channels => @channels, :types => @types} }
+      format.json { render :json => {:channels => @channels, :types => @types, :fields => @fields} }
       format.xml { render :xml => @channel.not_social.to_xml(Channel.private_options) }
     end
 	end
@@ -31,21 +32,16 @@ class AppliController < ApplicationController
 	def newchannel
 		@message = Array.new
 		@message.push("error")
-		ApiKey.all.each do |e|
-			if e.api_key == params[:api_key]
-				asso = Association.find(:all, :conditions => ["key = ?", e.id])
-				asso.each do |k|
-					if k.user_id == nil
-						a = Association.find(k.id)
-						a.user_id = current_user.id
-						a.name = params[:type]
-						a.save
-						@message[0] = "success"
-					else
-						@message[0] = "error"
-					end
-				end
+		asso = Association.find_by key: params[:key]
+		if asso
+			if asso.user_id == nil
+				asso.user_id = current_user.id
+				asso.name = params[:type]
+				asso.save
+				@message[0] = "success"
 			end
+		else
+			@message[0] = "absent"
 		end
 		respond_to do |format|
 			format.json { render :json => @message }
@@ -54,48 +50,86 @@ class AppliController < ApplicationController
 
 	def editchannel
 		@channels = Array.new
-		@api_keys = Array.new
+		@keys = Array.new
+		@fields = Array.new
+		@ids = Array.new
 		Association.all.each do |e|
 			if (e.user_id != nil) & (e.user_id == current_user.id)
-				apikey = ApiKey.find(e.key)
-				@api_keys.push(apikey.api_key)
-				channel = Channel.find(apikey.channel_id)
+				@keys.push(e.key)
+				channel = Channel.find(e.channel)
 				@channels.push(channel)
+				@fields.push(e.field)
+				@ids.push(e.id)
 			end
 		end
 		respond_to do |format|
       format.html {	render layout: "configuration" }
-      format.json { render :json => {:channels => @channels, :api_keys => @api_keys }}
+      format.json { render :json => {:channels => @channels, :keys => @keys, :fields => @fields, :ids => @ids }}
       format.xml { render :xml => @channel.not_social.to_xml(Channel.private_options) }
     end
 	end
 
-	def update_api
-		response.content_type = "text/plain"
-		key = ApiKey.find(params[:id])
-		key.api_key = params[:api_key]
-		name = params[:name]
-		channel = Channel.find(key.channel_id)
-		channel.name = name
-		k = Association.find_by key: key.id
-		if k && (k.user_id == current_user.id)
-			channel.save
-			key.save
-			render :text => "API key updated."
+	def update_key
+		@message = Array.new
+		@message.push("error")
+		response.content_type = "application/json"
+		asso = Association.find(params[:id])
+		if asso
+			if asso.user_id == current_user.id
+				newasso = Association.find_by key: params[:key]
+				if newasso
+					if newasso.user_id == nil
+						newasso.user_id = current_user.id
+						newasso.key = params[:key]
+						newasso.name = asso.name
+						newasso.save
+						asso.user_id = nil
+						asso.save
+						@message[0] = "success"
+					elsif newasso.user_id != current_user.id
+						@message[0] = "belongs1"
+					else
+						#if the new key is the same than the old one
+						@message[0] = "nothing"
+					end
+				else
+					@message[0] = "invalid"
+				end
+			else
+				@message[0] = "belongs2"
+			end
+		end
+		respond_to do |format|
+			format.json {render :json => @message}
+		end
+	end
+
+	def refresh
+		asso = Association.find(params[:id])
+		if asso
+			respond_to do |format|
+				format.json {render :json => {key: asso.key}}
+			end
 		else
-			render :text => "You are not allowed to update this API key."
+			respond_to do |format|
+				format.json {render :json => {key: "error"}}
+			end
 		end
 	end
 
 	def unbind_api
-		response.content_type = "text/plain"
-		key = ApiKey.find(params[:id])
-		k = Association.find_by key: key.id
-		if (k.user_id == current_user.id)
-			k.user_id = nil
-			k.save
+		@message = Array.new
+		@message.push("error")
+		response.content_type = "application/json"
+		asso = Association.find(params[:id])
+		if (asso.user_id == current_user.id)
+			asso.user_id = nil
+			asso.save
+			@message[0] = "success"
 		end
-		render :text => "API key unbound."
+		respond_to do |format|
+			format.json {render :json => @message}
+		end
 	end
 	
 	def destroy_session

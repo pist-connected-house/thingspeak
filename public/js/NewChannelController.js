@@ -29,7 +29,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 						$scope.success = false;
 					}
 					else {
-						$scope.errorMessageR = "The key already exists or is invalid.";
+						$scope.errorMessageR = "The key is not valid.";
 						$scope.errorsRequest = true;
 						$scope.success = false;
 					}

@@ -10,6 +10,7 @@ ConfigurationApp.controller('ConfigurationController', ['$scope', '$http', '$int
 				var obj = {
 					channel: data.channels[i].channel,
 					type: data.types[i].capitalizeFirstLetter(),
+					field: data.fields[i],
 				};
 				$scope.channels.push(obj);
 			}
