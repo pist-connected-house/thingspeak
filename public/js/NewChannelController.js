@@ -8,7 +8,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	$scope.errorsRequest = false;
 	$scope.success = false;
 	$scope.key = "";
-	$scope.type = "electricity";
+	$scope.type = 1;
 
 	$scope.submitAPIkey = function() {
 		if ($scope.key === "") {

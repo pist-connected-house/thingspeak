@@ -12,19 +12,19 @@ class AppliController < ApplicationController
 
 	def configuration
 		@channels = Array.new
-		@types = Array.new
+		#@types = Array.new
 		@fields = Array.new
 		Association.all.each do |e|
 			if (e.user_id != nil) & (e.user_id == current_user.id)
 				channel = Channel.find(e.channel)
 				@channels.push(channel)
-				@types.push(e.name)
+				#@types.push(e.name)
 				@fields.push(e.field)
 			end
 		end
 		respond_to do |format|
       format.html {	render layout: "configuration" }
-      format.json { render :json => {:channels => @channels, :types => @types, :fields => @fields} }
+      format.json { render :json => {:channels => @channels, :fields => @fields} }
       format.xml { render :xml => @channel.not_social.to_xml(Channel.private_options) }
     end
 	end
@@ -36,7 +36,7 @@ class AppliController < ApplicationController
 		if asso
 			if asso.user_id == nil
 				asso.user_id = current_user.id
-				asso.name = params[:type]
+				asso.channel = params[:type]
 				asso.save
 				@message[0] = "success"
 			end
