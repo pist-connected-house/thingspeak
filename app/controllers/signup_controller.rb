@@ -1,5 +1,5 @@
 class SignupController < ApplicationController
-	layout 'essai'
+	layout 'login'
 
 	def signup
 		render 'signup'
