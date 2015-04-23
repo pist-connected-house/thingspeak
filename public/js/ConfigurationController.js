@@ -6,11 +6,19 @@ ConfigurationApp.controller('ConfigurationController', ['$scope', '$http', '$int
 		$http.get('http://localhost:3000/appli/configuration.json')
 		.then(function(result) {
 			data = result.data;
-			data.forEach(function(element) {
-			    $scope.channels.push(element.channel);
-			});
+			for (var i = 0; i<data.channels.length; i++) {
+				var obj = {
+					channel: data.channels[i].channel,
+					type: data.types[i].capitalizeFirstLetter(),
+				};
+				$scope.channels.push(obj);
+			}
 		});
 	}
+
+	String.prototype.capitalizeFirstLetter = function() {
+	    return this.charAt(0).toUpperCase() + this.slice(1);
+	};
 
 
 	configuration();
