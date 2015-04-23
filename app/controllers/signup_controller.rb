@@ -6,8 +6,5 @@ class SignupController < Devise::RegistrationsController
 	def edit; super; end
 	def create; super; end
 
-	def signup
-		render 'signup'
-	end
 
 end

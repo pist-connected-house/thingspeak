@@ -218,7 +218,7 @@ Thingspeak::Application.routes.draw do
     match 'login', to: "devise/sessions#new", :via => [:get, :post]
     match 'logout', to: "devise/sessions#destroy", :via => [:get, :post]
     match 'appli/logout', to: "devise/sessions#destroy", :via => [:get, :post]
-    match 'signUp', to: "signup#new", :via => [:get, :post]
+    match 'sign_up', to: "signup#new", :via => [:get, :post]
   end
 
   # streaming routes
