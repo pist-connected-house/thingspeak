@@ -8,6 +8,7 @@ Thingspeak::Application.routes.draw do
   get 'appli/configuration/edit-channel', to: 'appli#editchannel'
   post 'appli/configuration/update-api', to: 'appli#update_api'
   post 'appli/configuration/unbind-api', to: 'appli#unbind_api'
+  get '/key_registrations', to: 'appli#keyRegistrations'
 
   # admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
