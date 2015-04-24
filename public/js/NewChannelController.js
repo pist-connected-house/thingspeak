@@ -79,7 +79,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	$scope.firstnewchannel = function(field, key) {
 		$scope.success = false;
 		$scope.errors = false;
-		$http.get('http://localhost:3000/appli/configuration/key-registrations.json?channel='+$scope.current_channel+'&field='+field+'&key='+key)
+		$http.get('http://localhost:3000/appli/configuration/key_registrations.json?channel='+$scope.current_channel+'&field='+field+'&key='+key)
 		.then(function(result) {
 			if (result.data[0] === "success") {
 				$scope.success = true;
