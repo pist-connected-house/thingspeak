@@ -71,7 +71,6 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 				else {
 					$scope.errorMessage = "An error has occured, please try again.";
 				}
-				$scope.keys[field - 1] = "";
 				$scope.errors = true;
 			}
 		});
