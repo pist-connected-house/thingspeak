@@ -44,8 +44,8 @@ class ApplicationController < ActionController::Base
     params[:sum] = '1440' if params[:sum] == 'daily'
   end
   
-  def after_sign_up_path_for(resource)
-		'/key_registrations'
+	def after_sign_up_path_for(resource)
+		return '/key_registrations'
 	end
 
   def after_sign_out_path_for(resource)
