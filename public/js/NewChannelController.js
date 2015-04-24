@@ -1,5 +1,5 @@
 ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
-	$('.selectpicker').selectpicker({
+	/*$('.selectpicker').selectpicker({
 	    size: 3,
 	});	
 	$scope.errorMessage = "";
@@ -9,6 +9,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	$scope.success = false;
 	$scope.key = "";
 	$scope.type = 1;
+	$scope.count = [1,2,3,4,5,6,7,8];
 
 	$scope.submitAPIkey = function() {
 		if ($scope.key === "") {
@@ -35,5 +36,12 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 					}
 				});
 		}
-	};
+	};*/
+	$scope.count = [1,2,3,4,5,6,7,8];
+	$scope.current_channel = 1;
+
+	$http.get('http://localhost:3000/appli/configuration/get-keys?channel='+$scope.current_channel)
+	.then(function(result) {
+
+	});
 }]);

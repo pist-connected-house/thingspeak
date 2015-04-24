@@ -36,7 +36,7 @@ class AppliController < ApplicationController
 		if asso
 			if asso.user_id == nil
 				asso.user_id = current_user.id
-				asso.channel = params[:type]
+				#asso.channel = params[:type]
 				asso.save
 				@message[0] = "success"
 			end

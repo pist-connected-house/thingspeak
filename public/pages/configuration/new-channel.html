@@ -1,6 +1,5 @@
-<p>Add a new channel</p>
-<form ng-submit="submitAPIkey()">
-	<div class="input-group">
+<!--<form ng-submit="submitAPIkey()">
+	<div ng-repeat="for k in count"class="input-group">
 	  <div class="input-group-btn">
 	    <select ng-model="type" class="selectpicker">
 	    	<option value="1">Electricity</option>
@@ -8,7 +7,7 @@
 	    	<option value="3">Weather</option>
 		</select>
 	  </div><!-- /btn-group -->
-	  <input type="text" class="form-control" ng-model="key" placeholder="Device key" aria-label="...">
+	  <!--<input type="text" class="form-control" ng-model="key" placeholder="Device key" aria-label="...">
 	</div>
 	<div id="errors-message" ng-show="errors && !key.length">
         <i class="fa fa-exclamation-triangle btn-add-api"></i>
@@ -24,4 +23,20 @@
     </div>
 	<button type="submit" class="btn-add-api btn btn-primary form-control" aria-label="...">Add</button>
 
+</form>-->
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="">Channel 1</a></li>
+  <li role="presentation"><a href="">Channel 2</a></li>
+  <li role="presentation"><a href="">Channel 3</a></li>
+</ul>
+<br>
+
+<form class="bs-example bs-example-form" role="form">
+	<div ng-repeat="k in count">
+      <div class="input-group">
+         <input type="text" class="form-control" placeholder="Field {{$index+1}} key">
+         <span class="input-group-addon"><a href=""><i class="fa fa-check"></i></a></span>
+      </div>
+      <br>
+    </div>
 </form>
