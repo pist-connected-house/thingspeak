@@ -1,47 +1,79 @@
 ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
-	/*$('.selectpicker').selectpicker({
-	    size: 3,
-	});	
-	$scope.errorMessage = "";
-	$scope.errorMessageR = "";
-	$scope.errors = false;
-	$scope.errorsRequest = false;
-	$scope.success = false;
-	$scope.key = "";
-	$scope.type = 1;
-	$scope.count = [1,2,3,4,5,6,7,8];
-
-	$scope.submitAPIkey = function() {
-		if ($scope.key === "") {
-			$scope.errorMessage = "The field is empty";
-			$scope.errors = true;
-		}
-		else {
-			$http.get('http://localhost:3000/appli/configuration/new-channel.json?key='+$scope.key+'&type='+$scope.type)
-				.then(function (result) {
-					if (result.data[0] == "success") {
-						$scope.errors = false;
-						$scope.errorsRequest = false;
-						$scope.success = true;
-					}
-					else if (result.data[0] === "error") {
-						$scope.errorMessageR = "The key already belongs to a user.";
-						$scope.errorsRequest = true;
-						$scope.success = false;
-					}
-					else {
-						$scope.errorMessageR = "The key is not valid.";
-						$scope.errorsRequest = true;
-						$scope.success = false;
-					}
-				});
-		}
-	};*/
 	$scope.count = [1,2,3,4,5,6,7,8];
 	$scope.current_channel = 1;
+	$scope.keys = [];
+	$scope.errors = false;
+	$scope.disabled = [];
+	$scope.success = false;
 
-	$http.get('http://localhost:3000/appli/configuration/get-keys?channel='+$scope.current_channel)
-	.then(function(result) {
+	$scope.index = function() {
+		$http.get('http://localhost:3000/appli/configuration/get-keys.json?channel='+$scope.current_channel)
+		.then(function(result) {
+			$scope.keys = [];
+			$scope.disabled = [];
+			result.data.keys.forEach(function(element) {
+				if (element === "") {
+					$scope.keys.push("");
+					$scope.disabled.push(false);
+				}
+				else {
+					$scope.keys.push(element);
+					$scope.disabled.push(true);
+				}
+				
+			});
+		});
+	};
+	
+	$scope.index();
 
-	});
+	$scope.current = function(i) {
+		$scope.errors = false;
+		$scope.success = false;
+		$scope.current_channel = i;
+		$scope.index();
+	};
+
+	$scope.remove = function(key) {
+		$scope.success = false;
+		$scope.errors = false;
+		$http.get('http://localhost:3000/appli/configuration/unbind-key.json?key='+key)
+		.then(function(result) {
+			if (result.data[0] === "success") {
+				$scope.success = true;
+				$scope.successMessage = "Key removed.";
+				$scope.index();
+			}
+			
+		});
+	};
+
+	$scope.newchannel = function(field, key) {
+		$scope.success = false;
+		$scope.errors = false;
+		$http.get('http://localhost:3000/appli/configuration/new-channel.json?channel='+$scope.current_channel+'&field='+field+'&key='+key)
+		.then(function(result) {
+			if (result.data[0] === "success") {
+				$scope.success = true;
+				$scope.disabled[field-1] = true;
+				$scope.successMessage = "Key added.";
+			}
+			else {
+				if (result.data[0] === "belongs_to_you") {
+					$scope.errorMessage = "The key you entered has already been saved by you previously.";
+				}
+				else if (result.data[0] === "belongs_to_another") {
+					$scope.errorMessage = "The key you entered belongs to another user.";
+				}
+				else if (result.data[0] === "absent") {
+					$scope.errorMessage = "The key you entered does not exist.";
+				}
+				else {
+					$scope.errorMessage = "An error has occured, please try again.";
+				}
+				$scope.keys[field - 1] = "";
+				$scope.errors = true;
+			}
+		});
+	};
 }]);

@@ -30,21 +30,44 @@ class AppliController < ApplicationController
 	end
 
 	def newchannel
-		@message = Array.new
-		@message.push("error")
+		message = Array.new
 		asso = Association.find_by key: params[:key]
 		if asso
 			if asso.user_id == nil
 				asso.user_id = current_user.id
-				#asso.channel = params[:type]
-				asso.save
-				@message[0] = "success"
+				if params[:channel] == "1"
+					asso.channel = 3*current_user.id - 2
+					asso.sensor = params[:channel]
+					asso.field = params[:field]
+					asso.save
+					message[0] = "success"
+				elsif params[:channel] == "2"
+					asso.channel = 3*current_user.id - 1
+					asso.sensor = params[:channel]
+					asso.field = params[:field]
+					asso.save
+					message[0] = "success"
+				elsif params[:channel] == "3"
+					asso.channel = 3*current_user.id
+					asso.sensor = params[:channel]
+					asso.field = params[:field]
+					asso.save
+					message[0] = "success"
+				else
+					message[0] = "error"
+				end
+			else
+				if asso.user_id == current_user.id
+					message[0] = "belongs_to_you"
+				else
+					message[0] = "belongs_to_another"
+				end
 			end
 		else
-			@message[0] = "absent"
+			message[0] = "absent"
 		end
 		respond_to do |format|
-			format.json { render :json => @message }
+			format.json { render :json => message }
 		end
 	end
 
@@ -67,6 +90,21 @@ class AppliController < ApplicationController
       format.json { render :json => {:channels => @channels, :keys => @keys, :fields => @fields, :ids => @ids }}
       format.xml { render :xml => @channel.not_social.to_xml(Channel.private_options) }
     end
+	end
+
+	def getkeys
+		keys = Array.new(8, "")
+		Association.all.each do |e|
+			if (e.user_id != nil) & (e.user_id == current_user.id)
+				if e.sensor.to_s == params[:channel]
+					keys[e.field - 1] = e.key
+				end
+			end
+		end
+		print keys
+		respond_to do |format|
+			format.json {render :json => {:keys => keys}}
+		end
 	end
 
 	def update_key
@@ -117,13 +155,15 @@ class AppliController < ApplicationController
 		end
 	end
 
-	def unbind_api
+	def unbind_key
 		@message = Array.new
 		@message.push("error")
-		response.content_type = "application/json"
-		asso = Association.find(params[:id])
-		if (asso.user_id == current_user.id)
+		asso = Association.find_by key: params[:key]
+		if asso
 			asso.user_id = nil
+			asso.field = nil
+			asso.sensor = nil
+			asso.channel = nil
 			asso.save
 			@message[0] = "success"
 		end

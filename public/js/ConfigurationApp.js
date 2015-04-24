@@ -11,10 +11,10 @@ ConfigurationApp.config(['$routeProvider',
         templateUrl: '/pages/configuration/new-channel.html',
         controller: 'NewChannelController',
       }).
-      when('/edit-channel', {
+      /*when('/edit-channel', {
         templateUrl: '/pages/configuration/edit-channel.html',
         controller: 'EditChannelController',
-      }).
+      }).*/
     	otherwise({
       	redirectTo: '/'
     	});
