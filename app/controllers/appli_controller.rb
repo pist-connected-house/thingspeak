@@ -2,7 +2,7 @@ class AppliController < ApplicationController
 	before_filter :require_user
 	skip_before_filter  :verify_authenticity_token
 	
-	layout: 'login'
+	layout 'login'
 
 	def index
 		render layout: "index"
