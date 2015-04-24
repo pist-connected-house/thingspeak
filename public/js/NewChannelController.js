@@ -75,4 +75,32 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 			}
 		});
 	};
+	
+	$scope.firstnewchannel = function(field, key) {
+		$scope.success = false;
+		$scope.errors = false;
+		$http.get('http://localhost:3000/appli/configuration/key-registrations.json?channel='+$scope.current_channel+'&field='+field+'&key='+key)
+		.then(function(result) {
+			if (result.data[0] === "success") {
+				$scope.success = true;
+				$scope.disabled[field-1] = true;
+				$scope.successMessage = "Key added.";
+			}
+			else {
+				if (result.data[0] === "belongs_to_you") {
+					$scope.errorMessage = "The key you entered has already been saved by you previously.";
+				}
+				else if (result.data[0] === "belongs_to_another") {
+					$scope.errorMessage = "The key you entered belongs to another user.";
+				}
+				else if (result.data[0] === "absent") {
+					$scope.errorMessage = "The key you entered does not exist.";
+				}
+				else {
+					$scope.errorMessage = "An error has occured, please try again.";
+				}
+				$scope.errors = true;
+			}
+		});
+	};
 }]);

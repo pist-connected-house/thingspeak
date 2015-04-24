@@ -11,6 +11,10 @@ ConfigurationApp.config(['$routeProvider',
         templateUrl: '/pages/configuration/new-channel.html',
         controller: 'NewChannelController',
       }).
+	  when('/key_registrations', {
+        templateUrl: '/pages/configuration/key_registrations.html',
+        controller: 'NewChannelController',
+      }).
       /*when('/edit-channel', {
         templateUrl: '/pages/configuration/edit-channel.html',
         controller: 'EditChannelController',
