@@ -9,6 +9,18 @@ class AppliController < ApplicationController
 	end
 
 	def key_registrations
+		c1 = Channel.new
+		c1.id = 3*current_user.id - 2
+		c1.name = "Channel 1"
+		c1.save
+		c2 = Channel.new
+		c2.id = 3*current_user.id - 1
+		c2.name = "Channel 2"
+		c2.save
+		c3 = Channel.new
+		c3.id = 3*current_user.id
+		c3.name = "Channel 3"
+		c3.save
 		render layout: "key_registrations"
 	end
 
