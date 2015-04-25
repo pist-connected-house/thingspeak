@@ -16,6 +16,10 @@ body {
     margin-bottom: 2%;
 }
 
+.body-config {
+    margin: 5%;
+}
+
 .btn-add-api {
     margin-top: 1%;
 }
