@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
   
 
 	def after_sign_up_path_for(resource)
-		return '/key_registrations'
+		return 'appli/key_registrations'
 	end
 
     # adds an api key to the new user
