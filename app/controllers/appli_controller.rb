@@ -8,9 +8,9 @@ class AppliController < ApplicationController
 		render layout: "index"
 	end
 
-	#def keyRegistrations
-	#	render "keyRegistrations"
-	#end
+	def keyRegistrations
+		render layout: "key_registrations"
+	end
 
 	def configuration
 		@channels = Array.new

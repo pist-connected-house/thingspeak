@@ -3,25 +3,21 @@ var ConfigurationApp = angular.module('ConfigurationApp', ['ngRoute', 'angularLo
 ConfigurationApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-    	when('/', {
-    		templateUrl: '/pages/configuration/index.html',
-        controller: 'ConfigurationController',
-    	}).
-      when('/new-channel', {
-        templateUrl: '/pages/configuration/new-channel.html',
-        controller: 'NewChannelController',
-      }).
-	  when('/key_registrations', {
-        templateUrl: '/pages/configuration/key_registrations.html',
-        controller: 'NewChannelController',
-      }).
-      /*when('/edit-channel', {
-        templateUrl: '/pages/configuration/edit-channel.html',
-        controller: 'EditChannelController',
-      }).*/
-    	otherwise({
-      	redirectTo: '/'
-    	});
+		when('/', {
+			templateUrl: '/pages/configuration/index.html',
+			controller: 'ConfigurationController',
+		}).
+		when('/new-channel', {
+			templateUrl: '/pages/configuration/new-channel.html',
+			controller: 'NewChannelController',
+		}).
+		/*when('/edit-channel', {
+			templateUrl: '/pages/configuration/edit-channel.html',
+			controller: 'EditChannelController',
+		}).*/
+		otherwise({
+			redirectTo: '/'
+		});
   	}
 ]);
 
