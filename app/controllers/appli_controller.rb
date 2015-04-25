@@ -8,7 +8,7 @@ class AppliController < ApplicationController
 		render layout: "index"
 	end
 
-	def keyRegistrations
+	def key_registrations
 		render layout: "key_registrations"
 	end
 

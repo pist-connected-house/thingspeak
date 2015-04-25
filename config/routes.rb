@@ -8,7 +8,7 @@ Thingspeak::Application.routes.draw do
   get 'appli/configuration/get-keys', to: 'appli#getkeys'
   get 'appli/configuration/refresh', to: 'appli#refresh'
   get 'appli/configuration/unbind-key', to: 'appli#unbind_key'
-  get 'appli/key_registrations', to: 'appli#keyRegistrations'
+  get 'appli/key_registrations', to: 'appli#key_registrations'
 
   # admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
