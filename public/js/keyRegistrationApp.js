@@ -5,7 +5,10 @@ keyRegistrationApp.config(['$routeProvider',
     $routeProvider.
     	when('/', {
     		templateUrl: '/pages/configuration/key_registrations.html',
-			controller: 'NewChannelController',
+			controller: 'KeyRegistrationController',
     	}).
+		otherwise({
+			redirectTo: '/'
+		});
 }
 ]);
