@@ -1,5 +1,5 @@
 class SignupController < Devise::RegistrationsController
-	layout 'login'
+	layout 'key_registrations'
 	
 	# use defaults from devise
 	def new; super; end
