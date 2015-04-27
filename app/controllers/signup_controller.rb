@@ -8,6 +8,7 @@ class SignupController < Devise::RegistrationsController
 	
 	
 	def after_sign_up_path_for(resource)
+		cookies[:sign_up] = { value: "XJ-122", expires: 1.hour.from_now }
 		return '/key_registrations'
 	end
 
