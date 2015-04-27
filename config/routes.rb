@@ -1,7 +1,7 @@
 Thingspeak::Application.routes.draw do
 
   #pist routes
-  get '/appli/login', to: 'login#login'
+  #get '/appli/login', to: 'login#login'
   get '/appli', to: 'appli#index'
   get '/appli/configuration', to: 'appli#configuration'
   get 'appli/configuration/new-channel', to: 'appli#newchannel'
@@ -217,6 +217,7 @@ Thingspeak::Application.routes.draw do
   # users
   devise_scope :user do
     match 'login', to: "devise/sessions#new", :via => [:get, :post]
+    match 'appli/login', to: "login#new", :via => [:get, :post]
     match 'logout', to: "devise/sessions#destroy", :via => [:get, :post]
     match 'appli/logout', to: "devise/sessions#destroy", :via => [:get, :post]
     match 'sign_up', to: "signup#new", :via => [:get, :post]

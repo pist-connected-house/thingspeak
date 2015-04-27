@@ -50,14 +50,19 @@ class ApplicationController < ActionController::Base
   end
 
   # change default devise sign_in page; make admins sign in work correctly
+  #def after_sign_in_path_for(resource)
+  #  if resource.is_a?(AdminUser)
+  #    admin_dashboard_path
+  #  else
+  #    # make sure https is specified in the redirect url if we're in the production environment
+  #    url = @ssl ? "#{domain}channels" : "#{domain}channels"
+  #    return url
+  #  end
+  #end
+
   def after_sign_in_path_for(resource)
-    if resource.is_a?(AdminUser)
-      admin_dashboard_path
-    else
-      # make sure https is specified in the redirect url if we're in the production environment
-      url = @ssl ? "#{domain}channels" : "#{domain}channels"
-      return url
-    end
+    url = @ssl ? '/appli' : '/appli'
+    return url
   end
 
   # authenticates user based on the user's api_key
@@ -150,7 +155,7 @@ class ApplicationController < ActionController::Base
           format.html   {
             session[:link_back] = request.url
             logger.debug "Redirecting to login"
-            redirect_to login_path
+            redirect_to '/appli/login'
             return true
           }
           format.json do

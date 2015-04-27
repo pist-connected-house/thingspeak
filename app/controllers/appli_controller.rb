@@ -25,7 +25,7 @@ class AppliController < ApplicationController
 			cookies.delete :sign_up
 			render layout: "key_registrations"
 		else
-			redirect_to '/appli/configuration' 
+			redirect_to '/appli/configuration#/new-channel' 
 		end
 	end
 
