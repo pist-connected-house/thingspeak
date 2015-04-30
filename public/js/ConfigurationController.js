@@ -24,7 +24,7 @@ ConfigurationApp.controller('ConfigurationController', ['$scope', '$http', '$int
 	configuration();
 	var intervalConfig = $interval(configuration, 10000);
 
-	$scope.$on('$destroy', function () { 
-		$interval.cancel(intervalConfig);		
+	$scope.$on('$destroy', function () {
+		$interval.cancel(intervalConfig);
 	});
 }]);
