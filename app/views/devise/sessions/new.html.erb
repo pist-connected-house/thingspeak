@@ -1,57 +1,50 @@
-<div class="row">
-  <div class="col-sm-6 col-xs-12">
+<div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+                <h4 class="breadcrumb">
+                  <% if @failed %>
+                    <%= t(:signin_failure) %>
+                  <% else %>
+                    <%= t(:signin_please) %>
+                  <% end %>
+                </h4>
 
-    <h4 class="breadcrumb">
-      <% if @failed %>
-        <%= t(:signin_failure) %>
-      <% else %>
-        <%= t(:signin_please) %>
-      <% end %>
-    </h4>
-
-    <% if @failed %><%= t(:signin_try_again) %><br><br><% end %>
-    <% if @mail_message.present? %><%= @mail_message %><br><br><% end %>
-
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :id => 'loginform', :class => 'form-horizontal' }) do |f| %>
-      <input name='userlogin' class='userlogin' />
-
-      <div class="form-group">
-        <label class="col-sm-4 col-xs-3 control-label"><%= t(:userid) %></label>
-        <div class="col-sm-8 col-xs-9"><%= f.text_field :login, :value => cookies['user_id'], :class => 'form-control' %></div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-sm-4 col-xs-3 control-label"><%= t(:password) %></label>
-        <div class="col-sm-8 col-xs-9">
-          <%= f.password_field :password, :class => 'form-control' %>
-          <%= link_to t(:forgot), new_user_password_path, :id => 'forgot_password' %>
+                <% if @failed %><%= t(:signin_try_again) %><br><br><% end %>
+                <% if @mail_message.present? %><%= @mail_message %><br><br><% end %>
+            </div>
+            <div class="panel-body">
+                <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :id => 'loginform', :role => 'form' }) do |f| %>
+                    <fieldset>
+                        <div class="form-group">
+                            <%= f.text_field :login, :value => cookies['user_id'], :class => 'form-control', :placeholder => t(:userid) %>
+                        </div>
+                        <div class="form-group">
+                            <%= f.password_field :password, :class => 'form-control', :placeholder => t(:password) %>
+                            <%= link_to t(:forgot), new_user_password_path, :id => 'forgot_password' %>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <%= f.check_box :remember_me, :checked => true %>
+                                <%= t(:remember_me) %>
+                            </label>
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <input type="submit" value="Login" class="btn btn-lg btn-custom btn-block">
+                    </fieldset>
+                <% end %>
+            </div>
         </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8 col-xs-offset-3 col-xs-9">
-          <div class="checkbox">
-            <label>
-              <%= f.check_box :remember_me, :checked => true %>
-              <%= t(:remember_me) %>
-            </label>
-          </div>
+        <div class="breadcrumb">
+                You do not have an account ?
+                <a href="/sign_up">Sign up now</a>
         </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8 col-xs-offset-3 col-xs-9"><p class="form-control-static"><%= f.submit t(:signin), :class => 'btn btn-primary' %></p></div>
-      </div>
-    <% end %>
-
-  </div>
+    </div>
 </div>
 
 <script type="text/javascript">
   var login = document.getElementById('user_login');
-  if (login.value.length == 0)
+  if (login.value.length === 0)
     login.focus();
   else
     document.getElementById('user_password').focus();
 </script>
-

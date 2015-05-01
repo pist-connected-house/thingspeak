@@ -211,16 +211,11 @@ Thingspeak::Application.routes.draw do
   get 'apps/thingtweet', :to => 'thingtweets#index'
   get 'apps/react', :to => 'react#index'
 
-  # docs
-  get 'docs(/:action)', :to => 'docs'
 
   # users
   devise_scope :user do
     match 'login', to: "devise/sessions#new", :via => [:get, :post]
-    match 'appli/login', to: "login#new", :via => [:get, :post]
     match 'logout', to: "devise/sessions#destroy", :via => [:get, :post]
-    match 'appli/logout', to: "devise/sessions#destroy", :via => [:get, :post]
-    match 'sign_up', to: "signup#new", :via => [:get, :post]
   end
 
   # streaming routes
@@ -232,4 +227,3 @@ Thingspeak::Application.routes.draw do
 
   #match ':controller(/:action(/:id(.:format)))', :via => :all
 end
-

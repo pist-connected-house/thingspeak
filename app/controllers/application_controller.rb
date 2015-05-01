@@ -43,11 +43,9 @@ class ApplicationController < ActionController::Base
     params[:median] = '1440' if params[:median] == 'daily'
     params[:sum] = '1440' if params[:sum] == 'daily'
   end
-  
 
-  def after_sign_out_path_for(resource)
-    return '/appli/login'
-  end
+
+
 
   # change default devise sign_in page; make admins sign in work correctly
   #def after_sign_in_path_for(resource)
@@ -155,7 +153,7 @@ class ApplicationController < ActionController::Base
           format.html   {
             session[:link_back] = request.url
             logger.debug "Redirecting to login"
-            redirect_to '/appli/login'
+            redirect_to '/login'
             return true
           }
           format.json do
@@ -375,4 +373,3 @@ class ApplicationController < ActionController::Base
       include ActionView::Helpers::TextHelper
     end
 end
-

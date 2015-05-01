@@ -14,7 +14,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-	
+
 	<!-- Weather CSS-->
 	<!--<link href="dist/css/weather-panel.css" rel="stylesheet">
 
@@ -69,7 +69,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/appli">Connected house - Proto 1.0</a>
+                <a class="navbar-brand" href="/">Connected house - Proto 1.0</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -82,12 +82,14 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
+                        <li><%= link_to t(:myaccount), account_path %></li>
+                        <li><%= link_to t(:account_edit), edit_account_path %></li>
+                        <li><%= link_to t(:public_profile), user_profile_path(current_user.login) %></li>
+                        <li><%= link_to t(:profile_edit), edit_profile_path %></li>
                         <li><a href="/appli/configuration"><i class="fa fa-gear fa-fw"></i> Configuration</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/appli/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Sign out</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -145,9 +147,9 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        
+
         <%= yield %>
-        
+
         <!-- /#page-wrapper -->
 
     </div>

@@ -1,7 +1,7 @@
 class AppliController < ApplicationController
 	before_filter :require_user
 	skip_before_filter  :verify_authenticity_token
-	
+
 	layout 'login'
 
 	def index
@@ -25,7 +25,7 @@ class AppliController < ApplicationController
 			cookies.delete :sign_up
 			render layout: "key_registrations"
 		else
-			redirect_to '/appli/configuration#/new-channel' 
+			redirect_to '/appli/configuration#/new-channel'
 		end
 	end
 
@@ -136,9 +136,9 @@ class AppliController < ApplicationController
 			format.json {render :json => @message}
 		end
 	end
-	
+
 	def destroy_session
-		redirect_to "/appli/login"
+		redirect_to "/login"
 	end
 
 end

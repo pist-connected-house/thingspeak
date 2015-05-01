@@ -3,11 +3,14 @@ class RegistrationsController < Devise::RegistrationsController
   after_filter :add_api_key, :only => :create
 
   # use defaults from devise
-  def new; super; end
+  def new
+		cookies[:sign_up] = { value: "XJ-122", expires: 1.hour.from_now }
+		super
+	end
   def edit; super; end
   def create; super; end
 
-  
+
 
 	def after_sign_up_path_for(resource)
 		return '/appli/key_registrations'
@@ -23,4 +26,3 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
 end
-

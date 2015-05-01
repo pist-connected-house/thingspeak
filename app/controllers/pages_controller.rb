@@ -12,6 +12,10 @@ class PagesController < ApplicationController
     @menu = 'about'
   end
 
+  def appli
+    @menu = "appli"
+  end
+
   def headers
   end
 
@@ -33,4 +37,3 @@ class PagesController < ApplicationController
   end
 
 end
-
