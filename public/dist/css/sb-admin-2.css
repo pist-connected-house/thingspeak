@@ -24,6 +24,10 @@ body {
     margin-top: 1%;
 }
 
+.btn-border {
+  border: solid #2980b9 1px;
+}
+
 .red-rm {
     color: #e74c3c
 }
