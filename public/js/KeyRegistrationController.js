@@ -5,6 +5,7 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 	$scope.errors = false;
 	$scope.disabled = [];
 	$scope.success = false;
+	$scope.field_name =[];
 
 	$scope.index = function() {
 		$http.get('http://localhost:3000/appli/configuration/get-keys.json?channel='+$scope.current_channel)
@@ -32,6 +33,28 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 		$scope.success = false;
 		$scope.current_channel = i;
 		$scope.index();
+		if (i%3 == 0) {
+			field_name.push("electricity sensor key");
+		}
+		else if (i%3 == 2) {
+			field_name.push("humidity sensor key");
+			field_name.push("outside temperature sensor key");
+			field_name.push("pressure sensor key");
+			field_name.push("wind direction sensor key");
+			field_name.push("wind speed sensor key");
+			field_name.push("pluviometry sensor key");
+			field_name.push("luminosity sensor key");
+		}
+		else {
+			field_name.push("inside temperature sensor key 1");
+			field_name.push("inside temperature sensor key 2");
+			field_name.push("inside temperature sensor key 3");
+			field_name.push("inside temperature sensor key 4");
+			field_name.push("inside temperature sensor key 5");
+			field_name.push("inside temperature sensor key 6");
+			field_name.push("inside temperature sensor key 7");
+			field_name.push("inside temperature sensor key 8");
+		}
 	};
 
 	$scope.remove = function(key) {
