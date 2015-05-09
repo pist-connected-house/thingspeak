@@ -72,7 +72,8 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 			field_name.push("pluviometry sensor key");
 			field_name.push("luminosity sensor key");
 		}
-		else {$scope.count.push(1);
+		else {
+			$scope.count.push(1);
 			$scope.count.push(2);
 			$scope.count.push(3);
 			$scope.count.push(4);
