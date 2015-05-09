@@ -7,6 +7,13 @@ class AppliController < ApplicationController
 	def index
 		render layout: "index"
 	end
+	
+	/*def totalFieldElec
+		tot = 0
+		while Association.current_user.id in Association.user_id
+			if Association.sensor == 1
+				tot++
+	end*/
 
 	def key_registrations
 		if cookies[:sign_up]
