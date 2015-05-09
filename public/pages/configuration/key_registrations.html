@@ -15,9 +15,9 @@
       {{successMessage}}
   </div>
   <form class="bs-example bs-example-form" role="form">
-  	<div ng-repeat="k in field_name">
+  	<div ng-repeat="k in count">
         <div class="input-group">
-           <input type="text" class="form-control" ng-disabled="disabled[$index]" ng-model="keys[$index]" placeholder="k">
+           <input type="text" class="form-control" ng-disabled="disabled[$index]" ng-model="keys[$index]" placeholder="field_name[k]))">
            <span ng-hide="disabled[$index]" class="input-group-addon"><a href="" ng-click="newchannel($index+1, keys[$index])"><i class="fa fa-check"></i></a></span>
            <span ng-show="disabled[$index]" class="input-group-addon"><a href="" ng-click="remove(keys[$index])"><i class="red-rm fa fa-times"></i></a></span>
         </div>

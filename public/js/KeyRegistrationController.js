@@ -1,5 +1,5 @@
 keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
-	$scope.count = [1,2,3,4,5,6,7,8];
+	$scope.count = [];
 	$scope.current_channel = 1;
 	$scope.keys = [];
 	$scope.errors = false;
@@ -33,28 +33,7 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 		$scope.success = false;
 		$scope.current_channel = i;
 		$scope.index();
-		if (i%3 == 0) {
-			field_name.push("electricity sensor key");
-		}
-		else if (i%3 == 2) {
-			field_name.push("humidity sensor key");
-			field_name.push("outside temperature sensor key");
-			field_name.push("pressure sensor key");
-			field_name.push("wind direction sensor key");
-			field_name.push("wind speed sensor key");
-			field_name.push("pluviometry sensor key");
-			field_name.push("luminosity sensor key");
-		}
-		else {
-			field_name.push("inside temperature sensor key 1");
-			field_name.push("inside temperature sensor key 2");
-			field_name.push("inside temperature sensor key 3");
-			field_name.push("inside temperature sensor key 4");
-			field_name.push("inside temperature sensor key 5");
-			field_name.push("inside temperature sensor key 6");
-			field_name.push("inside temperature sensor key 7");
-			field_name.push("inside temperature sensor key 8");
-		}
+		$scope.field_association();
 	};
 
 	$scope.remove = function(key) {
@@ -70,6 +49,47 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 			
 		});
 	};
+	
+	$scope.field_association = function() {
+		cchannel = $scope.current_channel;
+		if (cchannel%3 == 0) {
+			$scope.count.push(1);
+			field_name.push("electricity sensor key");
+		}
+		else if (cchannel%3 == 2) {
+			$scope.count.push(1);
+			$scope.count.push(2);
+			$scope.count.push(3);
+			$scope.count.push(4);
+			$scope.count.push(5);
+			$scope.count.push(6);
+			$scope.count.push(7);
+			field_name.push("humidity sensor key");
+			field_name.push("outside temperature sensor key");
+			field_name.push("pressure sensor key");
+			field_name.push("wind direction sensor key");
+			field_name.push("wind speed sensor key");
+			field_name.push("pluviometry sensor key");
+			field_name.push("luminosity sensor key");
+		}
+		else {$scope.count.push(1);
+			$scope.count.push(2);
+			$scope.count.push(3);
+			$scope.count.push(4);
+			$scope.count.push(5);
+			$scope.count.push(6);
+			$scope.count.push(7);
+			$scope.count.push(8);
+			field_name.push("inside temperature sensor key 1");
+			field_name.push("inside temperature sensor key 2");
+			field_name.push("inside temperature sensor key 3");
+			field_name.push("inside temperature sensor key 4");
+			field_name.push("inside temperature sensor key 5");
+			field_name.push("inside temperature sensor key 6");
+			field_name.push("inside temperature sensor key 7");
+			field_name.push("inside temperature sensor key 8");
+		}
+	}
 
 	$scope.newchannel = function(field, key) {
 		$scope.success = false;
