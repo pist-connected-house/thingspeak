@@ -92,7 +92,7 @@ class AppliController < ApplicationController
 
 
 	def getkeys
-		keys = Array.new(8, "")
+		keys = Array.new(3, "")
 		Association.all.each do |e|
 			if (e.user_id != nil) & (e.user_id == current_user.id)
 				if e.sensor.to_s == params[:channel]
