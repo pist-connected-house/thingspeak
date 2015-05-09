@@ -74,13 +74,6 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 		}
 		else {
 			$scope.count.push(1);
-			$scope.count.push(2);
-			$scope.count.push(3);
-			$scope.count.push(4);
-			$scope.count.push(5);
-			$scope.count.push(6);
-			$scope.count.push(7);
-			$scope.count.push(8);
 			field_name.push("inside temperature sensor key 1");
 			field_name.push("inside temperature sensor key 2");
 			field_name.push("inside temperature sensor key 3");
