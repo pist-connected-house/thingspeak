@@ -26,30 +26,6 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 		});
 	};
 	
-	$scope.index();
-
-	$scope.current = function(i) {
-		$scope.errors = false;
-		$scope.success = false;
-		$scope.current_channel = i;
-		$scope.index();
-		$scope.field_association();
-	};
-
-	$scope.remove = function(key) {
-		$scope.success = false;
-		$scope.errors = false;
-		$http.get('http://localhost:3000/appli/configuration/unbind-key.json?key='+key)
-		.then(function(result) {
-			if (result.data[0] === "success") {
-				$scope.success = true;
-				$scope.successMessage = "Key removed.";
-				$scope.index();
-			}
-			
-		});
-	};
-	
 	$scope.field_association = function() {
 		cchannel = $scope.current_channel;
 		if (cchannel%3 == 0) {
@@ -90,7 +66,34 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 			field_name.push("inside temperature sensor key 7");
 			field_name.push("inside temperature sensor key 8");
 		}
-	}
+	};
+
+	
+	$scope.index();
+	
+	$scope.field_association();
+	
+	$scope.current = function(i) {
+		$scope.errors = false;
+		$scope.success = false;
+		$scope.current_channel = i;
+		$scope.index();
+		$scope.field_association();
+	};
+
+	$scope.remove = function(key) {
+		$scope.success = false;
+		$scope.errors = false;
+		$http.get('http://localhost:3000/appli/configuration/unbind-key.json?key='+key)
+		.then(function(result) {
+			if (result.data[0] === "success") {
+				$scope.success = true;
+				$scope.successMessage = "Key removed.";
+				$scope.index();
+			}
+			
+		});
+	};
 
 	$scope.newchannel = function(field, key) {
 		$scope.success = false;
