@@ -6,6 +6,15 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	$scope.disabled = [];
 	$scope.success = false;
 	$scope.field_name =[];
+	
+	/*$scope.apiKey = function(key) {
+		$scope.success = false;
+		$scope.errors = false;
+		$http.get('http://localhost:3000/appli/configuration/apiKey.json?channel='+$scope.current_channel+'&field='+field+'&api_key='+key)
+		.then(function(result) {
+			
+		}
+	}*/
 
 	$scope.index = function() {
 		$http.get('http://localhost:3000/appli/configuration/get-keys.json?channel='+$scope.current_channel)
