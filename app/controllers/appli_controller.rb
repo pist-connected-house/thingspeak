@@ -8,6 +8,15 @@ class AppliController < ApplicationController
 		render layout: "index"
 	end
 
+	def getAPIKeys
+		serie = Association.find_by key: params[:key]
+		api = Array.new
+		api[0] = serie[0].api_key
+		respond_to do |format|
+			format.json { render :json => api}
+		end
+	end
+
 	def getCapteurTemp
 		capteurs = Array.new
 		Association.all.each do |e|
