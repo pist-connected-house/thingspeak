@@ -7,8 +7,21 @@ class AppliController < ApplicationController
 	def index
 		render layout: "index"
 	end
-	
-	
+
+	def getCapteurTemp
+		capteurs = Array.new
+		Association.all.each do |e|
+			if(e.user_id == current_user.id)
+				if(e.channel == ((current_user.id*3)-2))
+					capteurs.push(e.field)
+				end
+			end
+		end
+		respond_to do |format|
+			format.json { render :json => capteurs }
+		end
+	end
+
 
 	def key_registrations
 		if cookies[:sign_up]

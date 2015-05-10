@@ -30,14 +30,7 @@
             <div class="panel-body">
 				<div class="col-lg-6">
 					<form><select name="temperature" size="1">
-						<option><a ng-click="">Capteur 1
-						<option><a ng-click="">Capteur 2
-						<option ng-click="">Capteur 3
-						<option>Capteur 4
-						<option>Capteur 5
-						<option>Capteur 6
-						<option>Capteur 7
-						<option>Capteur 8
+						<option ng-repeat="i in capteur" ng-click="choixCapteur(i)">Capteur {{i}}
 					</select></form>
 				</div>
 				<div class="col-lg-6">
