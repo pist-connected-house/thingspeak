@@ -17,7 +17,7 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	};
 
 	$scope.getCapteurTemp=function(){
-		$http.get('http://localhost:3000/appli/getCapteurTemp')
+		$http.get('http://localhost:3000/appli/getCapteurTemp.json')
 		.then(function(result){
 			var data = result.data;
 			$scope.capteur =[];
@@ -28,17 +28,10 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	};
 
 	$scope.choixCapteur=function(i){
-		$http.get('http://localhost:3000/appli/')
+		$http.get('http://kgb.emn.fr:8001/channels/5/field/2.json?key=ZSAVTBI11WQOSJWY&results=1')
 		.then(function(result) {
 			var feed = result.data.feeds[0];
 			$scope.temp = parseFloat(feed.field2).toFixed(1);
-			$scope.humidity = Math.floor(feed.field3);
-			$scope.direction = Math.floor(feed.field7);
-	        $scope.speed = parseFloat(feed.field8).toFixed(1);
-			$scope.pluviometry = Math.floor(feed.field4);
-	        $scope.pressure = Math.floor(feed.field1/100);
-	        $scope.luminosity = Math.floor(feed.field5);
-
 			});
 	};
 
