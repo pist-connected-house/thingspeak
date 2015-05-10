@@ -6,13 +6,13 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	$scope.disabled = [];
 	$scope.success = false;
 	$scope.field_name =[];
-	
+
 	/*$scope.apiKey = function(key) {
 		$scope.success = false;
 		$scope.errors = false;
 		$http.get('http://localhost:3000/appli/configuration/apiKey.json?channel='+$scope.current_channel+'&field='+field+'&api_key='+key)
 		.then(function(result) {
-			
+
 		}
 	}*/
 
@@ -30,11 +30,11 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 					$scope.keys.push(element);
 					$scope.disabled.push(true);
 				}
-				
+
 			});
 		});
 	};
-	
+
 	$scope.field_association = function() {
 		cchannel = $scope.current_channel;
 		console.log(cchannel);
@@ -79,13 +79,14 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 		console.log($scope.count);
 	};
 
-	
+
 	$scope.index();
-	
+
 	$scope.field_association();
-	
+
 	$scope.current = function(i) {
 		console.log($scope.current_channel);
+		$scope.count = [];
 		$scope.errors = false;
 		$scope.success = false;
 		$scope.current_channel = i;
@@ -103,7 +104,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 				$scope.successMessage = "Key removed.";
 				$scope.index();
 			}
-			
+
 		});
 	};
 
@@ -134,6 +135,6 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 			}
 		});
 	};
-	
-	
+
+
 }]);
