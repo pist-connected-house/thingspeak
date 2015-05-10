@@ -85,6 +85,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	$scope.field_association();
 	
 	$scope.current = function(i) {
+		console.log($scope.current_channel);
 		$scope.errors = false;
 		$scope.success = false;
 		$scope.current_channel = i;
