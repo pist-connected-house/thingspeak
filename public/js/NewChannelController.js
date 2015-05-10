@@ -37,6 +37,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 	
 	$scope.field_association = function() {
 		cchannel = $scope.current_channel;
+		console.log(cchannel);
 		if (cchannel%3 == 0) {
 			$scope.count.push(1);
 			field_name.push("electricity sensor key");
@@ -75,6 +76,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 			field_name.push("inside temperature sensor key 7");
 			field_name.push("inside temperature sensor key 8");
 		}
+		console.log($scope.count);
 	};
 
 	
@@ -86,8 +88,8 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 		$scope.errors = false;
 		$scope.success = false;
 		$scope.current_channel = i;
-		$scope.index();
 		$scope.field_association();
+		$scope.index();
 	};
 
 	$scope.remove = function(key) {

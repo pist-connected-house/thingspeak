@@ -76,8 +76,8 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 		$scope.errors = false;
 		$scope.success = false;
 		$scope.current_channel = i;
-		$scope.index();
 		$scope.field_association();
+		$scope.index();
 	};
 
 	$scope.remove = function(key) {
