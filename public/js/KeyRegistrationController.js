@@ -21,11 +21,11 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 					$scope.keys.push(element);
 					$scope.disabled.push(true);
 				}
-				
+
 			});
 		});
 	};
-	
+
 	$scope.field_association = function() {
 		cchannel = $scope.current_channel;
 		if (cchannel%3 == 0) {
@@ -67,12 +67,13 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 			field_name.push("inside temperature sensor key 8");
 		}
 	};
-	
+
 	$scope.index();
-	
+
 	$scope.field_association();
 
 	$scope.current = function(i) {
+		$scope.count = [];
 		$scope.errors = false;
 		$scope.success = false;
 		$scope.current_channel = i;
@@ -90,11 +91,11 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 				$scope.successMessage = "Key removed.";
 				$scope.index();
 			}
-			
+
 		});
 	};
-	
-	
+
+
 
 	$scope.newchannel = function(field, key) {
 		$scope.success = false;
@@ -123,6 +124,6 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 			}
 		});
 	};
-	
-	
+
+
 }]);
