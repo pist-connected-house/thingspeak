@@ -2,14 +2,7 @@ pistApp.controller('ElectricityController', ['$scope', '$http', '$interval', fun
   $scope.ready = false;
   $scope.averageReady = false;
   $scope.currentReady = false;
-  $scope.nbFieldElec = [];
   
-  /*$scope.totalFieldElec = function() {
-	  $http.get('http://localhost:3000/appli/totalFieldElec.json')
-		.then(function(result) {
-			
-		}
-  }*/
 
   $scope.getAverage = function() {
     $scope.averageReady = false;
