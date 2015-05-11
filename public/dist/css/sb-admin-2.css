@@ -503,6 +503,7 @@ table.dataTable thead .sorting:after {
 }
 
 .custom-dropdown select{
+  margin : 0.5em;
   background: #ffffff;
   width: 268px;
   padding: 5px;
