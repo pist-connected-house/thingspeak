@@ -490,6 +490,7 @@ table.dataTable thead .sorting:after {
 }
 
 .custom-dropdown select{
+  float : left;
   padding-top : 0.5em;
   background: #ffffff;
   width: 268px;
