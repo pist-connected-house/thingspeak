@@ -38,14 +38,20 @@ class AppliController < ApplicationController
 			c1 = Channel.new
 			c1.id = 3*current_user.id - 2
 			c1.name = "Channel 1"
+			c1.add_write_api_key
+	    c1.set_ranking
 			c1.save
 			c2 = Channel.new
 			c2.id = 3*current_user.id - 1
 			c2.name = "Channel 2"
+			c2.add_write_api_key
+	    c2.set_ranking
 			c2.save
 			c3 = Channel.new
 			c3.id = 3*current_user.id
 			c3.name = "Channel 3"
+			c3.add_write_api_key
+	    c3.set_ranking
 			c3.save
 			cookies.delete :sign_up
 			render layout: "key_registrations"
