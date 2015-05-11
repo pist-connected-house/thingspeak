@@ -480,6 +480,7 @@ table.dataTable thead .sorting:after {
 
 
 .custom-dropdown {
+  float : left
   margin-top : 0.5em;
   position : relative;
   display: inline-block;
