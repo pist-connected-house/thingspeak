@@ -481,6 +481,7 @@ table.dataTable thead .sorting:after {
 
 .custom-dropdown {
   margin-top : 0.5em;
+  position : relative;
   display: inline-block;
   vertical-align: middle;
   width: 240px;
