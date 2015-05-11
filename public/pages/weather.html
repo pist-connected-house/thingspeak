@@ -29,9 +29,10 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
 				<div class="col-lg-6">
-					<form><select name="temperature" size="1">
-						<option ng-repeat="i in capteur" ng-click="choixCapteur(i)">Capteur {{i}}
-					</select></form>
+                    <select ng-model="capt" ng-change="control2(capteur[$index])" name="temperature" size="1">
+                    <option ng-repeat="i in capteur">Capteur {{i}}</option>
+
+					</select>
 				</div>
 				<div class="col-lg-6">
                     <h3><em>Inside: </em><strong>{{inside}} °C</strong></h3>

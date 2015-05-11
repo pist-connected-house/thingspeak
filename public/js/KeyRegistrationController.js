@@ -1,5 +1,5 @@
 keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '$interval', function($scope, $http, $interval){
-	ccount = [];
+	$scope.count = [];
 	$scope.current_channel = 1;
 	$scope.keys = [];
 	$scope.errors = false;
@@ -101,29 +101,50 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 	$scope.newchannel = function(field, key) {
 		$scope.success = false;
 		$scope.errors = false;
-		$http.get('http://localhost:3000/appli/configuration/new-channel.json?channel='+$scope.current_channel+'&field='+field+'&key='+key)
-		.then(function(result) {
-			if (result.data[0] === "success") {
-				$scope.success = true;
-				$scope.disabled[field-1] = true;
-				$scope.successMessage = "Key added.";
+		if (key.substring(0,2) == 'TI' && $scope.current_channel !== 1) {
+			$scope.errors = true;
+			$scope.errorMessage = 'The key you entered belongs to the wrong channel.';
+		}
+		else if (key.substring(0,1) == 'W' && $scope.current_channel !== 2) {
+			$scope.errors = true;
+			$scope.errorMessage = 'The key you entered belongs to the wrong channel.';
+		}
+		else if (key.substring(0,1) == 'W') {
+			if (key.substring(1,2) !== field ) {
+				$scope.errors = true;
+				$scope.errorMessage = 'The key you entered belongs to the wrong field.';
 			}
-			else {
-				if (result.data[0] === "belongs_to_you") {
-					$scope.errorMessage = "The key you entered has already been saved by you previously.";
-				}
-				else if (result.data[0] === "belongs_to_another") {
-					$scope.errorMessage = "The key you entered belongs to another user.";
-				}
-				else if (result.data[0] === "absent") {
-					$scope.errorMessage = "The key you entered does not exist.";
+		}
+		else if (key.substring(0,1) == 'E' && $scope.current_channel !== 3) {
+			$scope.errors = true;
+			$scope.errorMessage = 'The key you entered belongs to the wrong channel.';
+		}
+		else {
+			$http.get('http://localhost:3000/appli/configuration/new-channel.json?channel='+$scope.current_channel+'&field='+field+'&key='+key)
+			.then(function(result) {
+				if (result.data[0] === "success") {
+					$scope.success = true;
+					$scope.disabled[field-1] = true;
+					$scope.successMessage = "Key added.";
 				}
 				else {
-					$scope.errorMessage = "An error has occured, please try again.";
+					if (result.data[0] === "belongs_to_you") {
+						$scope.errorMessage = "The key you entered has already been saved by you previously.";
+					}
+					else if (result.data[0] === "belongs_to_another") {
+						$scope.errorMessage = "The key you entered belongs to another user.";
+					}
+					else if (result.data[0] === "absent") {
+						$scope.errorMessage = "The key you entered does not exist.";
+					}
+					else {
+						$scope.errorMessage = "An error has occured, please try again.";
+					}
+					$scope.errors = true;
 				}
-				$scope.errors = true;
-			}
-		});
+			});
+		} 
+		
 	};
 
 

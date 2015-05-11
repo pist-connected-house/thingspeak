@@ -1,6 +1,5 @@
 pistApp.controller('WeatherController', ['$scope', '$http', "$interval", function($scope, $http, $interval){
 
-
 	$scope.control = function(){
 	$http.get('http://kgb.emn.fr:8001/channels/5/feed.json?key=ZSAVTBI11WQOSJWY&results=1')
 	.then(function(result) {
@@ -16,28 +15,23 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 		});
 	};
 
-	$scope.getCapteurTemp=function(){
+	$scope.getCapteurTemp = function() {
 		$http.get('http://localhost:3000/appli/getCapteurTemp.json')
 		.then(function(result){
 			console.log(result);
 			var data = result.data;
-			$scope.capteur =[];
+			$scope.capteur =[1, 2, 3];
 			for(i=0; i<data.length; i=i+1){
 				$scope.capteur.push(parseFloat(data[i]).toFixed(1));
 			}
 		});
 	};
 
-	$scope.choixCapteur=function(i){
-		$http.get('http://kgb.emn.fr:8001/channels/5/field/2.json?key=ZSAVTBI11WQOSJWY&results=1')
-		.then(function(result) {
-			$scope.getCapteurTemp();
-			var feed = result.data.feeds[0];
-			$scope.inside = parseFloat(feed.field2).toFixed(1);
-			});
-	};
+	$scope.getCapteurTemp();
 
-	$scope.control2=function(){
+
+	$scope.control2 = function(i) {
+		console.log(i);
 		if ($scope.inside === undefined) {
 			$http.get('http://kgb.emn.fr:8001/channels/4/field/1.json?key=94BREBU27ZFTXJ38&results=20')
 			.then(function(result){

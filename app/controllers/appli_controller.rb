@@ -11,10 +11,11 @@ class AppliController < ApplicationController
 	def getAPIKeys
 		serie = Association.find_by key: params[:key]
 		api = Array.new
-		api[0] = serie[0].api_key
-		respond_to do |format|
-			format.json { render :json => api}
-		end
+		channel = serie.channel
+		field = serie.field
+		api_key = ApiKey.find_by channel_id: channel, write_flag: 1
+		data = {api_key: api_key.api_key, channel: channel, field: field}
+		render :json => data
 	end
 
 	def getCapteurTemp
