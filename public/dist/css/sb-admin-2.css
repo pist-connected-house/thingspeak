@@ -504,7 +504,7 @@ table.dataTable thead .sorting:after {
 }
 
 .custom-dropdown select{
-  background: transparent;
+  background: #ffffff;
   width: 268px;
   padding: 5px;
   font-size: 16px;
