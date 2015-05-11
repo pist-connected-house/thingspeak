@@ -478,23 +478,9 @@ table.dataTable thead .sorting:after {
 	margin-top:0.6em;
 }
 
-.custom-dropdown--large {
-    font-size: 1.5em;
-}
-
-.custom-dropdown--small {
-    font-size: .7em;
-}
-
-.custom-dropdown__select{
-    font-size: inherit; /* inherit size from .custom-dropdown */
-    padding: .5em; /* add some space*/
-    margin: 0; /* remove default margins */
-}
 
 .custom-dropdown__select--white {
-    background-color: #fff;
-    color: #444;
+    background-color: #ffffff;
 }
 
 
@@ -506,19 +492,16 @@ table.dataTable thead .sorting:after {
 }
 
 .custom-dropdown__select {
+    padding: .5em; /* add some space*/
+    margin: 0; /* remove default margins */
     padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
     border: 0;
     border-radius: 3px;
 }
 
-.custom-dropdown::before,
-.custom-dropdown::after {
-    content: "";
-    position: absolute;
-}
 
 .custom-dropdown::after { /*  Custom dropdown arrow */
-    content: "\25BC";
+    content: "";
     height: 1em;
     font-size: .625em;
     line-height: 1;
@@ -543,7 +526,7 @@ table.dataTable thead .sorting:after {
 /* White dropdown style */
 .custom-dropdown--white::before {
     top: .5em; bottom: .5em;
-    background-color: #fff;
+    background-color: #ffffff;
     border-left: 1px solid rgba(0,0,0,.1);
 }
 
