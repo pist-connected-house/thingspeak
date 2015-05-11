@@ -22,7 +22,7 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 			console.log(result);
 			var data = result.data;
 			$scope.capteur =[];
-			for(i=0; i<result.length; i=i+1){
+			for(i=0; i<data.length; i=i+1){
 				$scope.capteur.push(parseFloat(data[i]).toFixed(1));
 			}
 		});
@@ -31,6 +31,7 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	$scope.choixCapteur=function(i){
 		$http.get('http://kgb.emn.fr:8001/channels/5/field/2.json?key=ZSAVTBI11WQOSJWY&results=1')
 		.then(function(result) {
+			$scope.getCapteurTemp();
 			var feed = result.data.feeds[0];
 			$scope.inside = parseFloat(feed.field2).toFixed(1);
 			});
