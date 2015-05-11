@@ -479,19 +479,6 @@ table.dataTable thead .sorting:after {
 }
 
 
-.custom-dropdown--large {
-    font-size: 1.5em;
-}
-
-.custom-dropdown--small {
-    font-size: .7em;
-}
-
-.custom-dropdown__select--white {
-    background-color: #fff;
-    color: #444;
-}
-
 .custom-dropdown {
   position: relative;
   display: inline-block;
@@ -503,7 +490,7 @@ table.dataTable thead .sorting:after {
 }
 
 .custom-dropdown select{
-  margin-top : 0.5em;
+  padding-top : 0.5em;
   background: #ffffff;
   width: 268px;
   padding: 5px;
@@ -555,18 +542,4 @@ table.dataTable thead .sorting:after {
 
 .custom-dropdown.custom-dropdown--disabled::after {
     color: rgba(0,0,0,.1);
-}
-
-    /* White dropdown style */
-.custom-dropdown--white::before {
-    top: .5em; bottom: .5em;
-    background-color: #fff;
-    border-left: 1px solid rgba(0,0,0,.1);
-}
-
-.custom-dropdown--white::after {
-    color: rgba(0,0,0,.9);
-}
-
-
 }
