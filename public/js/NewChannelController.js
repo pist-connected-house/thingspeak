@@ -40,7 +40,7 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 		console.log(cchannel);
 		if (cchannel%3 == 0) {
 			$scope.count.push(1);
-			field_name.push("electricity sensor key");
+			$scope.field_name.push("electricity sensor key");
 		}
 		else if (cchannel%3 == 2) {
 			$scope.count.push(1);
@@ -50,13 +50,13 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 			$scope.count.push(5);
 			$scope.count.push(6);
 			$scope.count.push(7);
-			field_name.push("humidity sensor key");
-			field_name.push("outside temperature sensor key");
-			field_name.push("pressure sensor key");
-			field_name.push("wind direction sensor key");
-			field_name.push("wind speed sensor key");
-			field_name.push("pluviometry sensor key");
-			field_name.push("luminosity sensor key");
+			$scope.field_name.push("humidity sensor key");
+			$scope.field_name.push("outside temperature sensor key");
+			$scope.field_name.push("pressure sensor key");
+			$scope.field_name.push("wind direction sensor key");
+			$scope.field_name.push("wind speed sensor key");
+			$scope.field_name.push("pluviometry sensor key");
+			$scope.field_name.push("luminosity sensor key");
 		}
 		else {
 			$scope.count.push(1);
@@ -67,14 +67,14 @@ ConfigurationApp.controller('NewChannelController', ['$scope', '$http', '$interv
 			$scope.count.push(6);
 			$scope.count.push(7);
 			$scope.count.push(8);
-			field_name.push("inside temperature sensor key 1");
-			field_name.push("inside temperature sensor key 2");
-			field_name.push("inside temperature sensor key 3");
-			field_name.push("inside temperature sensor key 4");
-			field_name.push("inside temperature sensor key 5");
-			field_name.push("inside temperature sensor key 6");
-			field_name.push("inside temperature sensor key 7");
-			field_name.push("inside temperature sensor key 8");
+			$scope.field_name.push("inside temperature sensor key 1");
+			$scope.field_name.push("inside temperature sensor key 2");
+			$scope.field_name.push("inside temperature sensor key 3");
+			$scope.field_name.push("inside temperature sensor key 4");
+			$scope.field_name.push("inside temperature sensor key 5");
+			$scope.field_name.push("inside temperature sensor key 6");
+			$scope.field_name.push("inside temperature sensor key 7");
+			$scope.field_name.push("inside temperature sensor key 8");
 		}
 		console.log($scope.count);
 	};
