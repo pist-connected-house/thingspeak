@@ -19,6 +19,7 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 	$scope.getCapteurTemp=function(){
 		$http.get('http://localhost:3000/appli/getCapteurTemp.json')
 		.then(function(result){
+			console.log(result);
 			var data = result.data;
 			$scope.capteur =[];
 			for(i=0; i<result.length; i=i+1){
