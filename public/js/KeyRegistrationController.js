@@ -74,6 +74,7 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 
 	$scope.current = function(i) {
 		$scope.count = [];
+		$scope.field_name = [];
 		$scope.errors = false;
 		$scope.success = false;
 		$scope.current_channel = i;
