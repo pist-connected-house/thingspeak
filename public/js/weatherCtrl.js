@@ -21,7 +21,7 @@ pistApp.controller('WeatherController', ['$scope', '$http', "$interval", functio
 		.then(function(result){
 			var data = result.data;
 			$scope.capteur =[];
-			for(i=0; i<data.length; i=i+1){
+			for(i=0; i<result.length; i=i+1){
 				$scope.capteur.push(parseFloat(data[i]).toFixed(1));
 			}
 		});
