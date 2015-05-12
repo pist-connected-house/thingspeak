@@ -109,11 +109,9 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 			$scope.errors = true;
 			$scope.errorMessage = 'The key you entered belongs to the wrong channel.';
 		}
-		else if (key.substring(0,1) == 'W') {
-			if (key.substring(1,2) !== field ) {
-				$scope.errors = true;
-				$scope.errorMessage = 'The key you entered belongs to the wrong field.';
-			}
+		else if (key.substring(0,1) == 'W' && key.substring(1,2) != field) {
+			$scope.errors = true;
+			$scope.errorMessage = 'The key you entered belongs to the wrong field.';
 		}
 		else if (key.substring(0,1) == 'E' && $scope.current_channel !== 3) {
 			$scope.errors = true;
@@ -143,8 +141,8 @@ keyRegistrationApp.controller('KeyRegistrationController', ['$scope', '$http', '
 					$scope.errors = true;
 				}
 			});
-		} 
-		
+		}
+
 	};
 
 
