@@ -136,18 +136,18 @@ class AppliController < ApplicationController
 	end
 
 
-	def refresh
-		asso = Association.find(params[:id])
-		if asso
-			respond_to do |format|
-				format.json {render :json => {key: asso.key}}
-			end
-		else
-			respond_to do |format|
-				format.json {render :json => {key: "error"}}
-			end
-		end
-	end
+	#def refresh
+	#	asso = Association.find(params[:id])
+	#	if asso
+	#		respond_to do |format|
+	#			format.json {render :json => {key: asso.key}}
+	#		end
+	#	else
+	#		respond_to do |format|
+	#			format.json {render :json => {key: "error"}}
+	#		end
+	#	end
+	#end
 
 	def unbind_key
 		@message = Array.new

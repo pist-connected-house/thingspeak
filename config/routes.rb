@@ -6,7 +6,6 @@ Thingspeak::Application.routes.draw do
   get '/appli/configuration', to: 'appli#configuration'
   get 'appli/configuration/new-channel', to: 'appli#newchannel'
   get 'appli/configuration/get-keys', to: 'appli#getkeys'
-  get 'appli/configuration/refresh', to: 'appli#refresh'
   get 'appli/configuration/unbind-key', to: 'appli#unbind_key'
   get 'appli/key_registrations', to: 'appli#key_registrations'
   get 'appli/getCapteurTemp', to: 'appli#getCapteurTemp'
